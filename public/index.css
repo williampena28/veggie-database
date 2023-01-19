@@ -1,8 +1,19 @@
-#container {
+#container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#create-fruit-container{
     display: flex;
     flex-direction: column;
     max-width: 200px;
 
+}
+#create-veggie-container{
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
 }
 
 .input-container{

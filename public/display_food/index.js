@@ -2,8 +2,8 @@ console.log("Display Page");
 
 let containerElement = document.getElementById('container')
 
-const getData = async () => {
-    let data = await fetch("/get_food_data");
+const getFruitData = async () => {
+    let data = await fetch("/get_fruit_data");
     data.json().then((parsedData) => {
         console.log(parsedData); // array of objects
         // map through and put in HTML
@@ -23,4 +23,27 @@ const getData = async () => {
     })
 }
 
-getData()
+getFruitData();
+
+const getVeggieData = async () =>
+{
+    let data = await fetch('/get_veggie_data');
+    data.json().then((parsedData) =>
+    {
+        console.log(parsedData);
+
+        parsedData.forEach((object) =>
+        {
+            let pTag = document.createElement("p"); // <p></p>
+            pTag.textContent = object.name; // <p>apple</p>
+            if (object.readyToEat !== true) {
+                pTag.style.color = "red"
+            } else {
+                pTag.style.color = "green"
+            }
+            containerElement.appendChild(pTag);
+        })
+    })
+}
+
+getVeggieData();

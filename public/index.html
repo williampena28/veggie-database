@@ -15,26 +15,53 @@
         <h1 id="delete">Delete Bad Data</h1>
     </nav>
     <div id="container">
-        <p id="upload-status"></p>
-        <div class="input-container">
-            <label for="name-input">Name</label>
-            <input type="text" id="name-input"/>
+        <div id="create-fruit-container">
+            <p id="upload-fruit-status"></p>
+            <h3>Add fruit here:</h3>
+            <div class="input-container">
+                <label for="name-fruit-input">Name</label>
+                <input type="text" id="name-fruit-input"/>
+            </div>
+            <div class="input-container">
+                <label for="color-fruit-input">Color</label>
+                <input type="text" id="color-fruit-input"/>
+            </div>
+            <div class="input-container">
+                <label for="age-fruit-input">Age</label>
+                <input type="number" id="age-fruit-input"/>
+            </div>
+            <div class="input-container">
+                <select name="ready-to-eat" id="ready-fruit-bool">
+                    <option value=true>Ready To Eat</option>
+                    <option value=false>Not Ready</option>
+                </select>
+            </div>
+            <button id="submit-fruit-button">Create Fruit</button>
         </div>
-        <div class="input-container">
-            <label for="color-input">Color</label>
-            <input type="text" id="color-input"/>
+        <div id="create-veggie-container">
+            <p id="upload-veggie-status"></p>
+            <h3>Add veggie here:</h3>
+            <div class="input-container">
+                <label for="name-veggie-input">Name</label>
+                <input type="text" id="name-veggie-input"/>
+            </div>
+            <div class="input-container">
+                <label for="color-veggie-input">Color</label>
+                <input type="text" id="color-veggie-input"/>
+            </div>
+            <div class="input-container">
+                <label for="age-veggie-input">Age</label>
+                <input type="number" id="age-veggie-input"/>
+            </div>
+            <div class="input-container">
+                <select name="ready-to-eat" id="ready-veggie-bool">
+                    <option value=true>Ready To Eat</option>
+                    <option value=false>Not Ready</option>
+                </select>
+            </div>
+            <button id="submit-veggie-button">Create Veggie</button>
+            
         </div>
-        <div class="input-container">
-            <label for="age-input">Age</label>
-            <input type="number" id="age-input"/>
-        </div>
-        <div class="input-container">
-            <select name="ready-to-eat" id="ready-bool">
-                <option value=true>Ready To Eat</option>
-                <option value=false>Not Ready</option>
-            </select>
-        </div>
-        <button id="submit-button">Create Fruit</button>
     </div>
     
 

@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 require('dotenv').config()
 
 // import MyFruit object from fruit.js
-const MyFruit = require('./models/fruit')
+const MyFruit = require('./models/fruit.js');
+const MyVeggie = require('./models/veggies.js');
 
 // create app by calling express function
 const app = express();
@@ -23,7 +24,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
 // string we get from MongoDB - we hide our username and password in our .env file
-let connectionString = `mongodb+srv://${process.env.MONGOUSERNAME}:${process.env.MONGOPASSWORD}@mongosetupcluster.6pmvhu8.mongodb.net/FoodDatabase?retryWrites=true&w=majority`;
+let connectionString = `mongodb+srv://${process.env.MONGOUSERNAME}:${process.env.MONGOPASSWORD}@mongosetupcluster.i58imot.mongodb.net/FruitDatabase?retryWrites=true&w=majority`;
 
 // by default mongoose 'strictQuery' is true (strict) meaning we cant ask for information not in our schema
 // see more here: https://mongoosejs.com/docs/migrating_to_6.html#strictquery-is-removed-and-replaced-by-strict
@@ -45,7 +46,8 @@ app.post('/create_fruit', async (req, res) =>{
     const {nameString: name, colorString: color, ageNumber: age, readyBool: readyToEat} = req.body;
 
     // Model methods usually give us a promise, so we can wait for the response
-    let returnedValue = await MyFruit.create({
+    let returnedValue = await MyFruit.create
+    ({
         name,
         color,
         age,
@@ -61,6 +63,27 @@ app.post('/create_fruit', async (req, res) =>{
 
 })
 
+//get info from the front end and create a new veggie to the collection
+app.post('/create_veggie', async (req, res) =>
+{
+    const {nameString: name, colorString: color, ageNumber: age, readyBool: readyToEat} = req.body;
+
+    let returnedValue = await MyVeggie.create
+    ({
+        name,
+        color,
+        age,
+        readyToEat
+    })
+
+    console.log(returnedValue);
+    if(returnedValue)
+    {
+        console.log('upload complete');
+    }
+    res.send(returnedValue);
+})
+
 // app.get('/get_data', (req, res) => {
 //     // Get data from MonogoDB,
 //     // res.json(data)
@@ -70,6 +93,13 @@ app.post('/create_fruit', async (req, res) =>{
 //     console.log(process.env.MONGOPASSWORD);
 //     res.json({data: "Response from server"})
 // })
+//
+app.get('/get_veggie_data', async (req, res) =>
+{
+    let response = await MyVeggie.find({});
+    console.log(response);
+    res.send(response);
+})
 app.delete("/delete_nameless_data", async (req, res) => {
    let response = await MyFruit.deleteMany({name: ""});
 
@@ -78,16 +108,20 @@ app.delete("/delete_nameless_data", async (req, res) => {
    res.send({data: `deleted ${response.deletedCount} items.`})
 })
 
-app.get('/get_food_data', async (req, res) => {
+app.get('/get_fruit_data', async (req, res) => {
     // get data from database
-    let response = await MyFruit.find({});
+    let response = await MyFruit.find({})
     console.log(response);
     // send it back to front end
     res.json(response)
-
+})
+app.get('/get_veggie_data', async (req, res) =>
+{
+    let response = await MyVeggie.find({})
+    console.log(response);
+    res.json(response);
 })
 
 app.listen(5000, () => {
     console.log(`Server is Listening on 5000`)
 });
-
