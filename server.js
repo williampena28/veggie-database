@@ -121,6 +121,22 @@ app.get('/get_veggie_data', async (req, res) =>
     console.log(response);
     res.json(response);
 })
+app.get('/veggie/:veggieName', async (req, res) =>
+{
+    //get veggie data
+    let response = await MyVeggie.find({})
+
+    response.forEach((el) =>
+    {
+        //check if element name 
+        if(el.name == req.params.veggieName)
+        {
+            //send the veggie from the database into the front end
+            console.log(el.name);
+            res.json(el.name);
+        }
+    })
+})
 
 app.listen(5000, () => {
     console.log(`Server is Listening on 5000`)
