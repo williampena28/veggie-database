@@ -137,5 +137,5 @@ displayVeggiesButton.addEventListener('click', () =>
 let displaySingleVeggieButton = document.getElementById('single-veggie-page');
 displaySingleVeggieButton.addEventListener('click', () =>
 {
-    window.location.href = './show_single_veggie'
+    window.location.href = './display_single_veggie'
 })

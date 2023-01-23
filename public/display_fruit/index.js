@@ -12,6 +12,7 @@ const getFruitData = async () => {
             // if not ready to eat- red text
             let pTag = document.createElement("p"); // <p></p>
             pTag.textContent = object.name; // <p>apple</p>
+
             if (object.readyToEat !== true) {
                 pTag.style.color = "red"
             } else {

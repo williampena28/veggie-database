@@ -84,16 +84,6 @@ app.post('/create_veggie', async (req, res) =>
     res.send(returnedValue);
 })
 
-// app.get('/get_data', (req, res) => {
-//     // Get data from MonogoDB,
-//     // res.json(data)
-//     // res.setHeader('Content-Type', 'application/json');
-
-//     console.log("request received at /get_data");
-//     console.log(process.env.MONGOPASSWORD);
-//     res.json({data: "Response from server"})
-// })
-//
 app.get('/get_veggie_data', async (req, res) =>
 {
     let response = await MyVeggie.find({});
@@ -115,12 +105,7 @@ app.get('/get_fruit_data', async (req, res) => {
     // send it back to front end
     res.json(response)
 })
-app.get('/get_veggie_data', async (req, res) =>
-{
-    let response = await MyVeggie.find({})
-    console.log(response);
-    res.json(response);
-})
+
 app.get('/veggie/:veggieName', async (req, res) =>
 {
     //get veggie data
@@ -133,7 +118,7 @@ app.get('/veggie/:veggieName', async (req, res) =>
         {
             //send the veggie from the database into the front end
             console.log(el.name);
-            res.json(el.name);
+            res.json(el);
         }
     })
 })
